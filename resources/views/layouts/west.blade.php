@@ -18,9 +18,13 @@
                         <li>
                             <a href="#" plain="true" style="text-decoration: none;color:black">Danh sách</a>
                         </li>
+                        <li>
+                            <a href="{{ route('don-vi-tinh') }}" plain="true" style="text-decoration: none;color:black">Đơn vị tính</a>
+                        </li>
 
                     </ul>
                 </li>
+                
             </ul>
             </li>
             </ul>
