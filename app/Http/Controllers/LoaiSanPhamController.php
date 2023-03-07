@@ -27,7 +27,8 @@ class LoaiSanPhamController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'redirect' => ('loai-san-pham')
+            'message' => 'Thêm loại sản phẩm thành công!',
+            'redirect' => ('loai-san-pham')            
         ], 200);    
     }
 
@@ -38,6 +39,7 @@ class LoaiSanPhamController extends Controller
         $loaisanpham->update();
         return response()->json([
             'status' => 'success',
+            'message' => 'Cập nhật loại sản phẩm thành công!',
             'redirect' => route('loai-san-pham')
         ], 200);  
     }
@@ -56,6 +58,7 @@ class LoaiSanPhamController extends Controller
         $loaisanpham->delete();
         return response()->json([
             'status' => 'success',
+            'message' => 'Xoá loại sản phẩm thành công!',
             'redirect' => route('loai-san-pham')
         ], 200);    
     }
