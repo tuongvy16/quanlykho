@@ -18,6 +18,7 @@ class LoaiSanPhamController extends Controller
         $loaisanpham = LoaiSanPham::all();
         return response()->json($loaisanpham);
     }
+
     public function themMoi(Request $request)
     {
         $loaisanpham = new LoaiSanPham();
@@ -36,7 +37,9 @@ class LoaiSanPhamController extends Controller
     {
         $loaisanpham = LoaiSanPham::find($id);
         $loaisanpham->ten = $request->ten;
+
         $loaisanpham->update();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Cập nhật loại sản phẩm thành công!',
@@ -47,6 +50,7 @@ class LoaiSanPhamController extends Controller
     public function xoa($id)
     {
         $loaisanpham = LoaiSanPham::find($id);
+
         if(empty($loaisanpham)) {
             return response()->json([
                 'status'    => 'error',
@@ -56,6 +60,7 @@ class LoaiSanPhamController extends Controller
         }
         
         $loaisanpham->delete();
+        
         return response()->json([
             'status' => 'success',
             'message' => 'Xoá loại sản phẩm thành công!',

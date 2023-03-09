@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\ChuongTrinh;
 use Illuminate\Http\Request;
 
@@ -21,8 +22,8 @@ class ChuongTrinhController extends Controller
     {
         $chuongtrinh = new ChuongTrinh();
         $chuongtrinh->ten = $request->ten;
-        $chuongtrinh->ngay_bat_dau = $request->ngay_bat_dau;
-        $chuongtrinh->ngay_ket_thuc = $request->ngay_ket_thuc;
+        $chuongtrinh->ngay_bat_dau = Carbon::parse($request->ngay_bat_dau)->format('Y-m-d');    //format thời gian thêm vào csdl
+        $chuongtrinh->ngay_ket_thuc = Carbon::parse($request->ngay_ket_thuc)->format('Y-m-d');  //format thời gian thêm vào csdl
         
         $chuongtrinh->save();
 
@@ -37,9 +38,11 @@ class ChuongTrinhController extends Controller
     {
         $chuongtrinh = ChuongTrinh::find($id);
         $chuongtrinh->ten = $request->ten;
-        $chuongtrinh->ngay_bat_dau = $request->ngay_bat_dau;
-        $chuongtrinh->ngay_ket_thuc = $request->ngay_ket_thuc;
+        $chuongtrinh->ngay_bat_dau = Carbon::parse($request->ngay_bat_dau)->format('Y-m-d');    //format thời gian thêm vào csdl
+        $chuongtrinh->ngay_ket_thuc = Carbon::parse($request->ngay_ket_thuc)->format('Y-m-d');  //format thời gian thêm vào csdl
+        
         $chuongtrinh->update();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Cập nhật chương trình thành công!',
@@ -50,6 +53,7 @@ class ChuongTrinhController extends Controller
     public function xoa($id)
     {
         $chuongtrinh = ChuongTrinh::find($id);
+
         if(empty($chuongtrinh)) {
             return response()->json([
                 'status'    => 'error',
@@ -59,6 +63,7 @@ class ChuongTrinhController extends Controller
         }
         
         $chuongtrinh->delete();
+        
         return response()->json([
             'status' => 'success',
             'message' => 'Xoá chương trình thành công!',

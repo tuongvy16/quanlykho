@@ -6,20 +6,15 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/easyui/themes/default/easyui.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/easyui/themes/icon.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/style.css') }}">
+
+	<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+
 </head>
 
 <body class="easyui-layout">
 
     {{-- North --}}
-    <div data-options="region:'north',border:false" style="height:50px">
-        <div id="logo">
-            <img src="{{ asset('assets/image/logo1.png') }}" style="height: 40px;"/>
-            <span class="text-logo"> QUẢN LÝ KHO HÀNG</span>
-        </div>
-        <div id="acc" style="float:right;">
-            <p>Xin chào.....</p>
-        </div>
-    </div>
+    @include('layouts.north')
     {{-- North --}}
 
     {{-- West --}}
@@ -38,6 +33,8 @@
 
 <script type="text/javascript" src="{{ asset('assets/easyui/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/easyui/jquery.easyui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 <script type="text/javascript">
 	function selectMenuItem(id) {
 		var menutrees = $('#sm').find(".sidemenu-tree");
@@ -56,6 +53,19 @@
 
 	$(document).ready(function() {
 		var menuItems = [{
+			text: 'Nhập/Xuất kho',
+			iconCls: 'icon-tip',
+			state: 'close',
+			children: [{
+				id: 'nhap-kho',
+				text: 'Nhập kho'
+
+			},{
+				id: 'xuat-kho',
+				text: 'Xuất kho'
+
+			}]
+		},{
 			text: 'Sản phẩm',
 			iconCls: 'icon-tip',
 			state: 'close',
@@ -65,9 +75,11 @@
 			},{
 				id: 'loai-san-pham',
 				text: 'Loại sản phẩm'
+
 			},{
 				id: 'don-vi-tinh',
 				text: 'Đơn vị tính'
+
 			}]
 		},
 		{
@@ -77,7 +89,7 @@
 			children: [{
 				id: 'hinh-thuc',
 				text: 'Danh sách'
-			}]
+						}]
 		},
 		{
 			text: 'Kho hàng',
@@ -86,7 +98,7 @@
 			children: [{
 				id: 'kho',
 				text: 'Danh sách'
-			}]
+						}]
 		},
 		{
 			text: 'Nhà cung cấp',
@@ -95,6 +107,7 @@
 			children: [{
 				id: 'nha-cung-cap',
 				text: 'Danh sách'
+
 			}]
 		},
 		{
@@ -103,6 +116,15 @@
 			state: 'close',
 			children: [{
 				id: 'chuong-trinh',
+				text: 'Danh sách'
+			}]
+		},
+		{
+			text: 'Khách hàng',
+			iconCls: 'icon-tip',
+			state: 'close',
+			children: [{
+				id: 'khach-hang',
 				text: 'Danh sách'
 			}]
 		}];
@@ -114,13 +136,14 @@
 				$.ajax({
 					method: "GET",
 					url: "{{ route('get-url') }}?name=" + item.id
-				})
+})
 				.done(function(urlData) {
 					window.location = urlData;
 				});
 			}
 		});	
 	});
+
 </script>
 
     @yield('page-js')

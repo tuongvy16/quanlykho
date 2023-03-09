@@ -1,9 +1,16 @@
-<div data-options="region:'north'" style="height:50px">
-    <div id="logo" style="float: left">
+<div data-options="region:'north',border:false" style="height:50px">
+    <div id="logo">
         <img src="{{ asset('assets/image/logo1.png') }}" style="height: 40px;"/>
-        <span class="text-logo" style="font-weight: bold; text-align:center; font-size: 20px;"> QUẢN LÝ KHO HÀNG</span>
+        <span class="text-logo"> QUẢN LÝ KHO HÀNG</span>
     </div>
     <div id="acc" style="float:right;">
-        <p>Xin chào.....</p>
+        <ul>
+            <li>
+                <a href="#"><i iconCls="icon-man">Tài khoản</i></a>
+            </li>
+            <li>
+                <a href="#"><i iconCls="icon-man">Thông báo</i></a>
+            </li>
+        </ul>
     </div>
 </div>

@@ -1,35 +1,34 @@
 @extends('master')
 @section('main-content')
 
-    <div data-options="region:'center',title:'Đơn vị tính'">
-        <table id="dg-don-vi-tinh" class="easyui-datagrid"></table>
+    <div data-options="region:'center',title:'Sản phẩm'">
+        <table id="dg-san-pham" class="easyui-datagrid"></table>
     </div>
 
-    @include('modules.donvitinh.form')
+    @include('modules.sanpham.form')
 
 @endsection
 
 @section('page-js')
-
     <script type="text/javascript">
         var url;
 
-        function newDonViTinh(){
+        function newSanPham(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','Thêm mới');
             $('#fm').form('clear');
-            url = "don-vi-tinh/them-moi";
+            url = "san-pham/them-moi";
         }
 
-        function editDonViTinh(){
-            var row = $('#dg-don-vi-tinh').datagrid('getSelected');
+        function editSanPham(){
+            var row = $('#dg-san-pham').datagrid('getSelected');
             if (row){
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Cập nhật');
                 $('#fm').form('load',row);
-                url = 'don-vi-tinh/cap-nhat/'+row.id;
+                url = 'san-pham/cap-nhat/'+row.id;
             }
         }
 
-        function saveDonViTinh(){
+        function saveSanPham(){
             $.ajaxSetup({
                 headers:
                 { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -43,8 +42,8 @@
                 success: function(result){
                     var result = eval('('+result+')');
                     if (result.status == "success"){
-                        $('#dlg').dialog('close');        // close the dialog
-                        $('#dg-don-vi-tinh').datagrid('reload');      // reload the DonViTinh data
+                        $('#dlg').dialog('close');                 // close the dialog
+                        $('#dg-san-pham').datagrid('reload');      // reload the SanPham data
                         
                     } else {
                         $.messager.show({
@@ -56,18 +55,18 @@
             });
         }
 
-        function destroyDonViTinh(){
+        function destroySanPham(){
             $.ajaxSetup({
                 headers:
                 { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
             });
-            var row = $('#dg-don-vi-tinh').datagrid('getSelected');
+            var row = $('#dg-san-pham').datagrid('getSelected');
             if (row){
-                $.messager.confirm('Confirm','Bạn có muốn xoá đơn vị tính này không?',function(r){
+                $.messager.confirm('Confirm','Bạn có muốn xoá sản phẩm này không?',function(r){
                     if (r){
-                        $.post('don-vi-tinh/xoa/'+row.id,function(result){
+                        $.post('san-pham/xoa/'+row.id,function(result){
                             if (result.status == "success"){
-                                $('#dg-don-vi-tinh').datagrid('reload');    // reload the user data
+                                $('#dg-san-pham').datagrid('reload');    // reload the user data
                             } else {
                                 $.messager.show({    // show error message
                                     title: 'Error',
@@ -87,40 +86,52 @@
             iconCls:'icon-add',
             plain:true,
             handler:function(){
-                newDonViTinh();
+                newSanPham();
             }
         },{
             text:'Cập nhật',
             iconCls:'icon-edit',
             plain:true,
             handler:function(){
-                editDonViTinh();
+                editSanPham();
             }
         },{
             text:'Xoá',
             iconCls:'icon-cancel',
             plain:true,
             handler:function(){
-                destroyDonViTinh();
+                destroySanPham();
             }
         }]; 
 
         $(document).ready(function () {
-            selectMenuItem('don-vi-tinh');
-            $('#dg-don-vi-tinh').datagrid({
-                title:'Danh sách đơn vị tính',
+            selectMenuItem('san-pham');
+            $('#dg-san-pham').datagrid({
+                title:'Danh sách sản phẩm',
                 iconCls:'icon-save',
-                url: "{{ route('don-vi-tinh.danh-sach') }}",
+                url: "{{ route('san-pham.danh-sach') }}",
                 method: 'GET',
                 rownumbers: true,
                 fit: true,
                 singleSelect: true,
                 toolbar:toolbar,
                 columns:[[
-                    {field:'id', title:'Mã đơn vị tính', align:'right'},
-                    {field:'ten', title:'Tên đơn vị tính', align:'right'},
+                    {field:'id', title:'Mã sản phẩm', align:'center'},
+                    {field:'ten', title:'Tên sản phẩm', align:'right'},
+                    {field:'don_vi_tinh_id', title:'Đơn vị tính', align:'center',formatter: formatDonViTinh},
+                    {field:'so_luong_xuat', title:'Số lượng xuất', align:'center'},
+                    {field:'so_luong_ton', title:'Số lượng tồn', align:'center'},
+                    {field:'tong_so_luong', title:'Tổng số lượng', align:'center'},
                 ]]
-            });        
+            });
+
+            function formatDonViTinh(val,row){
+                @foreach ($donvitinh as $item)
+                    return `<span>{{ $item->ten }}</span>`
+                @endforeach
+            }
         });
     </script>
+
+    
 @endsection

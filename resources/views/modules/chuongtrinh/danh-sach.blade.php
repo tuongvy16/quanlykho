@@ -11,11 +11,13 @@
 @section('page-js')
     <script type="text/javascript">
         var url;
+
         function newChuongTrinh(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','Thêm mới');
             $('#fm').form('clear');
             url = "chuong-trinh/them-moi";
         }
+
         function editChuongTrinh(){
             var row = $('#dg-chuong-trinh').datagrid('getSelected');
             if (row){
@@ -24,6 +26,7 @@
                 url = 'chuong-trinh/cap-nhat/'+row.id;
             }
         }
+
         function saveChuongTrinh(){
             $.ajaxSetup({
                 headers:
@@ -38,9 +41,8 @@
                 success: function(result){
                     var result = eval('('+result+')');
                     if (result.status == "success"){
-                        $('#dlg').dialog('close');                 // close the dialog
-                        $('#dg-chuong-trinh').datagrid('reload');      // reload the ChuongTrinh data
-                        
+                        $('#dlg').dialog('close');                  // close the dialog
+                        $('#dg-chuong-trinh').datagrid('reload');   // reload the ChuongTrinh data
                     } else {
                         $.messager.show({
                             title: 'Error',
@@ -50,6 +52,7 @@
                 }
             });
         }
+
         function destroyChuongTrinh(){
             $.ajaxSetup({
                 headers:
@@ -117,10 +120,8 @@
                     {field:'ngay_ket_thuc', title:'Ngày kết thúc', align:'right'},
                 ]]
             });
-
+        
            
         });
-    </script>
-
-    
+    </script>    
 @endsection

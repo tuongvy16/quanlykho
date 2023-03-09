@@ -15,4 +15,11 @@ class Kho extends Model
     protected $fillable = [
         'ten',
     ];
+
+    public function nhapkho()
+    {
+        return $this->HasMany(NhapKho::class);
+    }
+
+   
 }

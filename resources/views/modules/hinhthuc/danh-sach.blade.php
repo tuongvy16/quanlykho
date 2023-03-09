@@ -1,5 +1,6 @@
 @extends('master')
 @section('main-content')
+
     <div data-options="region:'center',title:'Hình thức'">
         <table id="dg-hinh-thuc" class="easyui-datagrid"></table>
     </div>
@@ -119,9 +120,7 @@
                     {field:'id', title:'Mã hình thức', align:'right'},
                     {field:'ten', title:'Tên hình thức', align:'right'},
                 ]]
-            });
-
-        
+            });        
         });
     </script>
 @endsection

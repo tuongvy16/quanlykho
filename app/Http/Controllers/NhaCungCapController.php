@@ -17,6 +17,7 @@ class NhaCungCapController extends Controller
         $nhacungcap = NhaCungCap::all();
         return response()->json($nhacungcap);
     }
+    
     public function themMoi(Request $request)
     {
         $nhacungcap = new NhaCungCap();
@@ -37,7 +38,9 @@ class NhaCungCapController extends Controller
         $nhacungcap = NhaCungCap::find($id);
         $nhacungcap->ten = $request->ten;
         $nhacungcap->dien_thoai = $request->dien_thoai;
+
         $nhacungcap->update();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Cập nhật nhà cung cấp thành công!',
@@ -48,6 +51,7 @@ class NhaCungCapController extends Controller
     public function xoa($id)
     {
         $nhacungcap = NhaCungCap::find($id);
+
         if(empty($nhacungcap)) {
             return response()->json([
                 'status'    => 'error',
@@ -57,6 +61,7 @@ class NhaCungCapController extends Controller
         }
         
         $nhacungcap->delete();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Xoá nhà cung cấp thành công!',

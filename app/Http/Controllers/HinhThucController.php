@@ -17,6 +17,7 @@ class HinhThucController extends Controller
         $hinhthuc = HinhThuc::all();
         return response()->json($hinhthuc);
     }
+
     public function themMoi(Request $request)
     {
         $hinhthuc = new HinhThuc();
@@ -35,7 +36,9 @@ class HinhThucController extends Controller
     {
         $hinhthuc = HinhThuc::find($id);
         $hinhthuc->ten = $request->ten;
+
         $hinhthuc->update();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Cập nhật hình thức thành công!',
@@ -46,6 +49,7 @@ class HinhThucController extends Controller
     public function xoa($id)
     {
         $hinhthuc = HinhThuc::find($id);
+
         if(empty($hinhthuc)) {
             return response()->json([
                 'status'    => 'error',
@@ -55,6 +59,7 @@ class HinhThucController extends Controller
         }
         
         $hinhthuc->delete();
+        
         return response()->json([
             'status' => 'success',
             'message' => 'Xoá hình thức thành công!',

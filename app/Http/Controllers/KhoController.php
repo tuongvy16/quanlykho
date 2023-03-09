@@ -17,6 +17,7 @@ class KhoController extends Controller
         $kho = Kho::all();
         return response()->json($kho);
     }
+
     public function themMoi(Request $request)
     {
         $kho = new Kho();
@@ -35,7 +36,9 @@ class KhoController extends Controller
     {
         $kho = Kho::find($id);
         $kho->ten = $request->ten;
+
         $kho->update();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Cập nhật kho thành công!',
@@ -46,6 +49,7 @@ class KhoController extends Controller
     public function xoa($id)
     {
         $kho = Kho::find($id);
+
         if(empty($kho)) {
             return response()->json([
                 'status'    => 'error',
@@ -55,6 +59,7 @@ class KhoController extends Controller
         }
         
         $kho->delete();
+        
         return response()->json([
             'status' => 'success',
             'message' => 'Xoá kho thành công!',

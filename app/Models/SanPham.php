@@ -6,18 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class DonViTinh extends Model
+class SanPham extends Model
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='don_vi_tinh';
-    protected $fillable = [
+    protected $table='san_pham';
+    protected $fillable=[
         'ten',
+        'don_vi_tinh_id',
     ];
 
-    public function sanpham()
+    public function donvitinh()
     {
-        return $this->HasMany(SanPham::class);
+        return $this->belongsTo(DonViTinh::class);
     }
 }

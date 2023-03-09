@@ -1,5 +1,6 @@
 @extends('master')
 @section('main-content')
+
     <div data-options="region:'center',title:'Loại sản phẩm'">
         <table id="dg-loai-san-pham" class="easyui-datagrid"></table>
     </div>
@@ -11,11 +12,13 @@
 @section('page-js')
     <script type="text/javascript">
         var url;
+
         function newLoaiSanPham(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','Thêm mới');
             $('#fm').form('clear');
             url = "loai-san-pham/them-moi";
         }
+
         function editLoaiSanPham(){
             var row = $('#dg-loai-san-pham').datagrid('getSelected');
             if (row){
@@ -24,6 +27,7 @@
                 url = 'loai-san-pham/cap-nhat/'+row.id;
             }
         }
+
         function saveLoaiSanPham(){
             $.ajaxSetup({
                 headers:
@@ -50,6 +54,7 @@
                 }
             });
         }
+
         function destroyLoaiSanPham(){
             $.ajaxSetup({
                 headers:

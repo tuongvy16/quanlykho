@@ -11,11 +11,13 @@
 @section('page-js')
     <script type="text/javascript">
         var url;
+
         function newNhaCungCap(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','Thêm mới');
             $('#fm').form('clear');
             url = "nha-cung-cap/them-moi";
         }
+
         function editNhaCungCap(){
             var row = $('#dg-nha-cung-cap').datagrid('getSelected');
             if (row){
@@ -24,6 +26,7 @@
                 url = 'nha-cung-cap/cap-nhat/'+row.id;
             }
         }
+
         function saveNhaCungCap(){
             $.ajaxSetup({
                 headers:
@@ -50,6 +53,7 @@
                 }
             });
         }
+
         function destroyNhaCungCap(){
             $.ajaxSetup({
                 headers:
@@ -117,7 +121,7 @@
                 ]]
             });
 
-           
+            
         });
     </script>
 

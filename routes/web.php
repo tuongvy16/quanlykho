@@ -1,13 +1,16 @@
 <?php
 
-use App\Http\Controllers\ChuongTrinhController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\DonViTinhController;
-use App\Http\Controllers\HinhThucController;
 use App\Http\Controllers\KhoController;
-use App\Http\Controllers\LoaiSanPhamController;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NhapKhoController;
+use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\HinhThucController;
+use App\Http\Controllers\DonViTinhController;
+use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhaCungCapController;
+use App\Http\Controllers\ChuongTrinhController;
+use App\Http\Controllers\LoaiSanPhamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,5 +85,32 @@ Route::prefix('chuong-trinh')->group(function(){
     Route::post('them-moi',[ChuongTrinhController::class,'themMoi'])->name('chuong-trinh.them-moi');
     Route::post('cap-nhat/{id}',[ChuongTrinhController::class,'capNhat']);
     Route::post('xoa/{id}',[ChuongTrinhController::class,'xoa']);
+});
+
+Route::prefix('san-pham')->group(function(){
+
+    Route::get('/',[SanPhamController::class,'sanPham'])->name('san-pham');
+    Route::get('danh-sach',[SanPhamController::class,'danhSach'])->name('san-pham.danh-sach');
+    Route::post('them-moi',[SanPhamController::class,'themMoi'])->name('san-pham.them-moi');
+    Route::post('cap-nhat/{id}',[SanPhamController::class,'capNhat']);
+    Route::post('xoa/{id}',[SanPhamController::class,'xoa']);
+});
+
+Route::prefix('khach-hang')->group(function(){
+
+    Route::get('/',[KhachHangController::class,'khachHang'])->name('khach-hang');
+    Route::get('danh-sach',[KhachHangController::class,'danhSach'])->name('khach-hang.danh-sach');
+    Route::post('them-moi',[KhachHangController::class,'themMoi'])->name('khach-hang.them-moi');
+    Route::post('cap-nhat/{id}',[KhachHangController::class,'capNhat']);
+    Route::post('xoa/{id}',[KhachHangController::class,'xoa']);
+});
+
+Route::prefix('nhap-kho')->group(function(){
+
+    Route::get('/',[NhapKhoController::class,'nhapKho'])->name('nhap-kho');
+    Route::get('danh-sach',[NhapKhoController::class,'danhSach'])->name('nhap-kho.danh-sach');
+    Route::post('them-moi',[NhapKhoController::class,'themMoi'])->name('nhap-kho.them-moi');
+    Route::post('cap-nhat/{id}',[NhapKhoController::class,'capNhat']);
+    Route::post('xoa/{id}',[NhapKhoController::class,'xoa']);
 });
 

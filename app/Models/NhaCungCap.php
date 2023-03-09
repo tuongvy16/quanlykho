@@ -16,4 +16,9 @@ class NhaCungCap extends Model
         'ten',
         'dien_thoai'
     ];
+
+    public function nhapkho()
+    {
+        return $this->HasMany(NhapKho::class);
+    }
 }

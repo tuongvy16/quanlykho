@@ -1,5 +1,6 @@
 @extends('master')
 @section('main-content')
+
     <div data-options="region:'center',title:'Kho hàng'">
         <table id="dg-kho" class="easyui-datagrid"></table>
     </div>
@@ -11,11 +12,13 @@
 @section('page-js')
     <script type="text/javascript">
         var url;
+
         function newKho(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','Thêm mới');
             $('#fm').form('clear');
             url = "kho/them-moi";
         }
+
         function editKho(){
             var row = $('#dg-kho').datagrid('getSelected');
             if (row){
@@ -24,6 +27,7 @@
                 url = 'kho/cap-nhat/'+row.id;
             }
         }
+
         function saveKho(){
             $.ajaxSetup({
                 headers:
@@ -50,6 +54,7 @@
                 }
             });
         }
+
         function destroyKho(){
             $.ajaxSetup({
                 headers:
