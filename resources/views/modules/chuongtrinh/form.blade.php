@@ -2,16 +2,16 @@
     data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
         <form id="fm" method="POST" novalidate style="margin:0;padding:20px 50px">
             @csrf
-            <h3>Thông tin chương trình</h3>
+
             <div style="margin-bottom:10px">
                 <input  id="ten" 
                         class="easyui-textbox" 
                         name="ten" 
                         type="text" 
                         data-options="required:true,
-                                        validType:'length[1,10]',
+                                        validType:'length[1,255]',
                                         missingMessage:'Vui lòng nhập tên chương trình',
-                                        invalidMessage:'Chứa tối thiểu từ 1 đến 10 ký tự'" 
+                                        invalidMessage:'Chứa tối thiểu từ 1 đến 255 ký tự'" 
                         style="width:100%"                       
                         labelPosition="top"
                         label="Tên chương trình:"

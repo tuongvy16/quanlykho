@@ -5,9 +5,7 @@
     <title>Quản lý kho hàng</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/easyui/themes/default/easyui.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ asset('assets/easyui/themes/icon.css') }}">
-	<link rel="stylesheet" href="{{ asset('assets/style.css') }}">
-
-	<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/custom-style.css') }}">
 
 </head>
 
@@ -33,7 +31,6 @@
 
 <script type="text/javascript" src="{{ asset('assets/easyui/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('assets/easyui/jquery.easyui.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('assets/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <script type="text/javascript">
 	function selectMenuItem(id) {
@@ -89,7 +86,7 @@
 			children: [{
 				id: 'hinh-thuc',
 				text: 'Danh sách'
-						}]
+			}]
 		},
 		{
 			text: 'Kho hàng',
@@ -98,7 +95,7 @@
 			children: [{
 				id: 'kho',
 				text: 'Danh sách'
-						}]
+			}]
 		},
 		{
 			text: 'Nhà cung cấp',
@@ -127,6 +124,19 @@
 				id: 'khach-hang',
 				text: 'Danh sách'
 			}]
+		},
+		{
+			text: 'Nhân viên',
+			iconCls: 'icon-tip',
+			state: 'close',
+			children: [{
+				id: 'nhan-vien',
+				text: 'Danh sách'
+			},
+			{
+				id: 'phan-quyen',
+				text: 'Phân quyền'
+			}]
 		}];
 
 		var $menu = $('#sm').sidemenu({
@@ -136,7 +146,7 @@
 				$.ajax({
 					method: "GET",
 					url: "{{ route('get-url') }}?name=" + item.id
-})
+				})
 				.done(function(urlData) {
 					window.location = urlData;
 				});

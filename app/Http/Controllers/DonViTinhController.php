@@ -14,16 +14,16 @@ class DonViTinhController extends Controller
 
     public function danhSach()
     {
-        $donvitinh = DonViTinh::all();
-        return response()->json($donvitinh);
+        $donViTinh = DonViTinh::all();
+        return response()->json($donViTinh);
     }
 
     public function themMoi(Request $request)
     {
-        $donvitinh = new DonViTinh();
-        $donvitinh->ten = $request->ten;
+        $donViTinh = new DonViTinh();
+        $donViTinh->ten = $request->ten;
         
-        $donvitinh->save();
+        $donViTinh->save();
 
         return response()->json([
             'status' => 'success',
@@ -33,10 +33,10 @@ class DonViTinhController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $donvitinh = DonViTinh::find($id);
-        $donvitinh->ten = $request->ten;
+        $donViTinh = DonViTinh::find($id);
+        $donViTinh->ten = $request->ten;
 
-        $donvitinh->update();
+        $donViTinh->update();
 
         return response()->json([
             'status' => 'success',
@@ -46,9 +46,9 @@ class DonViTinhController extends Controller
 
     public function xoa($id)
     {
-        $donvitinh = DonViTinh::find($id);
+        $donViTinh = DonViTinh::find($id);
 
-        if(empty($donvitinh)) {
+        if(empty($donViTinh)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy đơn vị tính'
@@ -56,7 +56,7 @@ class DonViTinhController extends Controller
 
         }
         
-        $donvitinh->delete();
+        $donViTinh->delete();
         
         return response()->json([
             'status' => 'success',

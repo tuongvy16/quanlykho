@@ -17,6 +17,7 @@ class HinhThucSeeder extends Seeder
         DB::table('hinh_thuc')->insert([
             ['id'=>1,'ten'=>'Quà tặng'],
             ['id'=>2,'ten'=>'Logictic'],                 
+            ['id'=>3,'ten'=>'Mượn chạy CT'],
         ]);
     }
 }

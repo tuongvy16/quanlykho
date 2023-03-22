@@ -5,23 +5,15 @@ use App\Http\Controllers\KhoController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NhapKhoController;
 use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\XuatKhoController;
 use App\Http\Controllers\HinhThucController;
 use App\Http\Controllers\DonViTinhController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\NhaCungCapController;
 use App\Http\Controllers\ChuongTrinhController;
 use App\Http\Controllers\LoaiSanPhamController;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\NhanVienController;
+use App\Http\Controllers\PhanQuyenController;
 
 Route::get('/', function () {
      return view('master');
@@ -112,5 +104,34 @@ Route::prefix('nhap-kho')->group(function(){
     Route::post('them-moi',[NhapKhoController::class,'themMoi'])->name('nhap-kho.them-moi');
     Route::post('cap-nhat/{id}',[NhapKhoController::class,'capNhat']);
     Route::post('xoa/{id}',[NhapKhoController::class,'xoa']);
+    
+    // Route::post('get-san-pham',[NhapKhoController::class,'getSanPham'])->name('get-san-pham');
+
 });
 
+Route::prefix('xuat-kho')->group(function(){
+
+    Route::get('/',[XuatKhoController::class,'xuatKho'])->name('xuat-kho');
+    Route::get('danh-sach',[XuatKhoController::class,'danhSach'])->name('xuat-kho.danh-sach');
+    Route::post('them-moi',[XuatKhoController::class,'themMoi'])->name('xuat-kho.them-moi');
+    Route::post('cap-nhat/{id}',[XuatKhoController::class,'capNhat']);
+    Route::post('xoa/{id}',[XuatKhoController::class,'xoa']);
+});
+
+Route::prefix('nhan-vien')->group(function(){
+
+    Route::get('/',[NhanVienController::class,'nhanVien'])->name('nhan-vien');
+    Route::get('danh-sach',[NhanVienController::class,'danhSach'])->name('nhan-vien.danh-sach');
+    Route::post('them-moi',[NhanVienController::class,'themMoi'])->name('nhan-vien.them-moi');
+    Route::post('cap-nhat/{id}',[NhanVienController::class,'capNhat']);
+    Route::post('xoa/{id}',[NhanVienController::class,'xoa']);
+});
+
+Route::prefix('phan-quyen')->group(function(){
+
+    Route::get('/',[PhanQuyenController::class,'phanQuyen'])->name('phan-quyen');
+    Route::get('danh-sach',[PhanQuyenController::class,'danhSach'])->name('phan-quyen.danh-sach');
+    Route::post('them-moi',[PhanQuyenController::class,'themMoi'])->name('phan-quyen.them-moi');
+    Route::post('cap-nhat/{id}',[PhanQuyenController::class,'capNhat']);
+    Route::post('xoa/{id}',[PhanQuyenController::class,'xoa']);
+});

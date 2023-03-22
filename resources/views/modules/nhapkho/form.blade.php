@@ -2,15 +2,38 @@
     data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
 
     {{-- Form phiếu nhập --}}
-    <form id="fm" method="POST" novalidate style="margin:0;padding:10px 20px">
+    <form id="fm" method="POST" novalidate style="margin:0;padding:0px 20px;height:100%">
         @csrf
-        
-        @include('modules.nhapkho.form-combo')
+        <div class="row" style="height: 35%">
+                @include('modules.nhapkho.form-combo')
+        </div>
+        <div class="row" >
+            <p style="margin: 5px">Danh sách sản phẩm nhập kho:     
+                <a href="javascript:void(0)" onclick="newNhapSanPham()">Chọn sản phẩm</a>
+            </p>
+            @include('modules.nhapkho.form-san-pham-nhap')
+            @include('modules.nhapkho.form-update-san-pham-nhap')
 
-        @include('modules.nhapkho.danh-sach-san-pham')
-        
-        <div style="padding: 20px">
-            <input class="easyui-textbox" label="Ghi chú:" multiline="true" labelPosition="top" style="width:100%;height:80px;">
+            <table id="dg-san-pham-nhap" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>Loại</th>
+                        <th>Đơn vị tính</th>
+                        <th>Hạn sử dụng</th>
+                        <th>Số lượng</th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>            
+                <tbody>
+                    <tr>
+                        <td colspan="6" style="text-align: center">Danh sách sản phẩm trống</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <input class="easyui-textbox" label="Ghi chú:" multiline="true" labelPosition="top" data-options="prompt:'Nội dung ghi chú'" style="width:100%;height:65px;">
+
         </div>
     </form>
     {{-- Form phiếu nhập --}}
@@ -23,6 +46,16 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
         onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Huỷ bỏ</a>
 </div>
+
+<script type="text/javascript">
+    var url;
+
+    function newNhapSanPham(){
+        $('#dlg-san-pham-nhap').dialog('open').dialog('center').dialog('setTitle','Sản phẩm');
+        $('#fm-san-pham-nhap').form('clear');
+    }    
+    
+</script>
 
 <script type="text/javascript">
     function myformatter(date) {
@@ -44,6 +77,7 @@
             return new Date();
         }
     }
-
 </script>
+
+
 

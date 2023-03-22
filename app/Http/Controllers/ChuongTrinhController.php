@@ -15,17 +15,17 @@ class ChuongTrinhController extends Controller
 
     public function danhSach()
     {
-        $chuongtrinh = ChuongTrinh::all();
-        return response()->json($chuongtrinh);
+        $chuongTrinh = ChuongTrinh::all();
+        return response()->json($chuongTrinh);
     }
     public function themMoi(Request $request)
     {
-        $chuongtrinh = new ChuongTrinh();
-        $chuongtrinh->ten = $request->ten;
-        $chuongtrinh->ngay_bat_dau = Carbon::parse($request->ngay_bat_dau)->format('Y-m-d');    //format thời gian thêm vào csdl
-        $chuongtrinh->ngay_ket_thuc = Carbon::parse($request->ngay_ket_thuc)->format('Y-m-d');  //format thời gian thêm vào csdl
+        $chuongTrinh = new ChuongTrinh();
+        $chuongTrinh->ten = $request->ten;
+        $chuongTrinh->ngay_bat_dau = Carbon::parse($request->ngay_bat_dau)->format('Y-m-d');    //format thời gian thêm vào csdl
+        $chuongTrinh->ngay_ket_thuc = Carbon::parse($request->ngay_ket_thuc)->format('Y-m-d');  //format thời gian thêm vào csdl
         
-        $chuongtrinh->save();
+        $chuongTrinh->save();
 
         return response()->json([
             'status' => 'success',
@@ -36,12 +36,12 @@ class ChuongTrinhController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $chuongtrinh = ChuongTrinh::find($id);
-        $chuongtrinh->ten = $request->ten;
-        $chuongtrinh->ngay_bat_dau = Carbon::parse($request->ngay_bat_dau)->format('Y-m-d');    //format thời gian thêm vào csdl
-        $chuongtrinh->ngay_ket_thuc = Carbon::parse($request->ngay_ket_thuc)->format('Y-m-d');  //format thời gian thêm vào csdl
+        $chuongTrinh = ChuongTrinh::find($id);
+        $chuongTrinh->ten = $request->ten;
+        $chuongTrinh->ngay_bat_dau = Carbon::parse($request->ngay_bat_dau)->format('Y-m-d');    //format thời gian thêm vào csdl
+        $chuongTrinh->ngay_ket_thuc = Carbon::parse($request->ngay_ket_thuc)->format('Y-m-d');  //format thời gian thêm vào csdl
         
-        $chuongtrinh->update();
+        $chuongTrinh->update();
 
         return response()->json([
             'status' => 'success',
@@ -52,9 +52,9 @@ class ChuongTrinhController extends Controller
 
     public function xoa($id)
     {
-        $chuongtrinh = ChuongTrinh::find($id);
+        $chuongTrinh = ChuongTrinh::find($id);
 
-        if(empty($chuongtrinh)) {
+        if(empty($chuongTrinh)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy chương trình'
@@ -62,7 +62,7 @@ class ChuongTrinhController extends Controller
 
         }
         
-        $chuongtrinh->delete();
+        $chuongTrinh->delete();
         
         return response()->json([
             'status' => 'success',

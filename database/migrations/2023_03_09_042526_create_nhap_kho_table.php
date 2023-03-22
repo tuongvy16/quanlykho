@@ -15,11 +15,11 @@ class CreateNhapKhoTable extends Migration
     {
         Schema::create('nhap_kho', function (Blueprint $table) {
             $table->id();
-            $table->integer('kho_id');
-            $table->integer('nha_cung_cap_id');
-            $table->integer('hinh_thuc_id');
-            $table->integer('chuong_trinh_id');
-            $table->integer('khach_hang_id');
+            $table->integer('kho_id')->nullable();
+            $table->integer('nha_cung_cap_id')->nullable();
+            $table->integer('hinh_thuc_id')->nullable();
+            $table->integer('chuong_trinh_id')->nullable();
+            $table->integer('khach_hang_id')->nullable();
             $table->integer('nhan_vien_nhap_id');
             $table->string('ghi_chu')->nullable();
             $table->date('ngay_duyet')->nullable();

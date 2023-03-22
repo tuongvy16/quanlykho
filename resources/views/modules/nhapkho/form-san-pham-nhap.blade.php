@@ -1,15 +1,15 @@
-<div id="dlg-san-pham" class="easyui-dialog" style="width:400px; padding:20px 50px"
+<div id="dlg-san-pham-nhap" class="easyui-dialog" style="width:400px; padding:20px 50px"
     data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
 
     {{-- Form thêm sản phẩm --}}
-    <form id="fm-san-pham" method="POST" novalidate style="margin:0;padding:20px 50px">
+    <form id="fm-san-pham-nhap" method="get" novalidate style="margin:0;padding:20px 50px">
         @csrf
 
         {{-- Loại sản phẩm --}}
         <div style="margin-bottom:10px">
-            <select class="easyui-combobox" name="loai_san_pham_id" label="Loại sản phẩm:" labelPosition="top" style="width:100%;"
-                data-options="required:true, missingMessage:'Vui lòng chọn loại sản phẩm'">
-                @foreach ($loaisanpham as $item)
+            <select class="easyui-combobox" id="loai_san_pham_id" name="loai_san_pham_id" label="Loại sản phẩm:" labelPosition="top" style="width:100%;"
+                data-options="required:true">
+                @foreach ($loaiSanPham as $item)
                     <option value="{{ $item->id }}">{{ $item->ten }}</option>
                 @endforeach
             </select>
@@ -18,9 +18,9 @@
 
         {{-- Sản phẩm --}}
         <div style="margin-bottom:10px">
-            <select class="easyui-combobox" name="san_pham_id" label="Sản phẩm:" labelPosition="top" style="width:100%;"
+            <select class="easyui-combobox" id="san_pham_id" name="san_pham_id" label="Sản phẩm:" labelPosition="top" style="width:100%;"
                 data-options="required:true, missingMessage:'Vui lòng chọn sản phẩm'">
-                @foreach ($sanpham as $item)
+                @foreach ($sanPham as $item)
                     <option value="{{ $item->id }}">{{ $item->ten }}</option>
                 @endforeach
             </select>
@@ -32,8 +32,6 @@
             <input id="han_su_dung" class="easyui-datebox" name="han_su_dung"
                 data-options="formatter:myformatter,
                                         parser:myparser, 
-                                        required: true,
-                                        missingMessage:'Vui lòng nhập hạn sử dụng',
                                         invalidMessage:'Ngày không hợp lệ',"
                 style="width:100%;" labelPosition="top" label="Hạn sử dụng">
         </div>
@@ -41,22 +39,23 @@
 
         {{-- Số lượng --}}
         <div style="margin-bottom:10px">
-            <input name="so_luong" class="easyui-numberspinner" value="1" style="width:100%;" labelPosition="top" label="Số lượng"
+            <input name="so_luong" id="so_luong" class="easyui-numberspinner" value="1" style="width:100%;" labelPosition="top" label="Số lượng"
             data-options="min:1,required: true, missingMessage:'Vui lòng nhập số lượng'">
         </div>
         {{-- Số lượng --}}
 
     </form>
     {{-- Form thêm sản phẩm --}}
-
+    
 </div>
-
 <div id="dlg-buttons">
     <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" style="width:90px"
-        onclick="saveNhaCungCap()">Lưu</a>
+        id="btn-save">Lưu</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" style="width:90px"
-        onclick="javascript:$('#dlg-san-pham').dialog('close')">Huỷ bỏ</a>
+        onclick="javascript:$('#dlg-san-pham-nhap').dialog('close')">Huỷ bỏ</a>
 </div>
+
+
 
 <script type="text/javascript">
     function myformatter(date) {

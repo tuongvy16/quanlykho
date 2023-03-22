@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\XuatKho;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -26,8 +27,14 @@ class ChuongTrinh extends Model
 
     ];
 
-    public function nhapkho()
+    public function nhap_kho()
     {
         return $this->HasMany(NhapKho::class);
     }
+
+    public function xuat_kho()
+    {
+        return $this->HasMany(XuatKho::class);
+    }
+
 }

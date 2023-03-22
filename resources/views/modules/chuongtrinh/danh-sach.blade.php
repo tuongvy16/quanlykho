@@ -20,7 +20,10 @@
 
         function editChuongTrinh(){
             var row = $('#dg-chuong-trinh').datagrid('getSelected');
+            console.log(row)
+
             if (row){
+
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','Cập nhật');
                 $('#fm').form('load',row);
                 url = 'chuong-trinh/cap-nhat/'+row.id;

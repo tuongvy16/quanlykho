@@ -29,23 +29,33 @@ class NhapKho extends Model
         return $this->belongsTo(Kho::class);
     }
 
-    public function nhacungcap()
+    public function nha_cung_cap()
     {
         return $this->belongsTo(NhaCungCap::class);
     }
 
-    public function hinhthuc()
+    public function hinh_thuc()
     {
         return $this->belongsTo(HinhThuc::class);
     }
 
-    public function chuongtrinh()
+    public function chuong_trinh()
     {
         return $this->belongsTo(ChuongTrinh::class);
     }
 
-    public function khachhang()
+    public function khach_hang()
     {
         return $this->belongsTo(KhachHang::class);
+    }
+
+    public function nhan_vien()
+    {
+        return $this->belongsTo(NhanVien::class);
+    }
+
+    public function chi_tiet_phieu_nhap()
+    {
+        return $this->HasMany(ChiTietPhieuNhap::class);
     }
 }

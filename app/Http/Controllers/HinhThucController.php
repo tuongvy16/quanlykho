@@ -14,16 +14,16 @@ class HinhThucController extends Controller
 
     public function danhSach()
     {
-        $hinhthuc = HinhThuc::all();
-        return response()->json($hinhthuc);
+        $hinhThuc = HinhThuc::all();
+        return response()->json($hinhThuc);
     }
 
     public function themMoi(Request $request)
     {
-        $hinhthuc = new HinhThuc();
-        $hinhthuc->ten = $request->ten;
+        $hinhThuc = new HinhThuc();
+        $hinhThuc->ten = $request->ten;
         
-        $hinhthuc->save();
+        $hinhThuc->save();
 
         return response()->json([
             'status' => 'success',
@@ -34,10 +34,10 @@ class HinhThucController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $hinhthuc = HinhThuc::find($id);
-        $hinhthuc->ten = $request->ten;
+        $hinhThuc = HinhThuc::find($id);
+        $hinhThuc->ten = $request->ten;
 
-        $hinhthuc->update();
+        $hinhThuc->update();
 
         return response()->json([
             'status' => 'success',
@@ -48,9 +48,9 @@ class HinhThucController extends Controller
 
     public function xoa($id)
     {
-        $hinhthuc = HinhThuc::find($id);
+        $hinhThuc = HinhThuc::find($id);
 
-        if(empty($hinhthuc)) {
+        if(empty($hinhThuc)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy hình thức'
@@ -58,7 +58,7 @@ class HinhThucController extends Controller
 
         }
         
-        $hinhthuc->delete();
+        $hinhThuc->delete();
         
         return response()->json([
             'status' => 'success',

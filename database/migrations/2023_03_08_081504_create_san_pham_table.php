@@ -16,9 +16,9 @@ class CreateSanPhamTable extends Migration
         Schema::create('san_pham', function (Blueprint $table) {
             $table->id();
             $table->string('ten');
-            $table->integer('so_luong_xuat')->default(0);
-            $table->integer('so_luong_ton')->default(0);
-            $table->integer('tong_so_luong')->default(0);
+            $table->integer('so_luong_xuat')->default(0)->nullable();
+            $table->integer('so_luong_ton')->default(0)->nullable();
+            $table->integer('tong_so_luong')->default(0)->nullable();
             $table->integer('don_vi_tinh_id');
             $table->timestamps();
             $table->softDeletes();

@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\SanPham;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LoaiSanPham extends Model
 {
@@ -15,4 +16,9 @@ class LoaiSanPham extends Model
     protected $fillable = [
         'ten',
     ];
+
+    public function san_pham()
+    {
+        return $this->belongsToMany(SanPham::class);
+    }
 }

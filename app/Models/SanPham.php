@@ -17,8 +17,13 @@ class SanPham extends Model
         'don_vi_tinh_id',
     ];
 
-    public function donvitinh()
+    public function don_vi_tinh()
     {
         return $this->belongsTo(DonViTinh::class);
+    }
+
+    public function loai_san_pham()
+    {
+        return $this->belongsToMany(LoaiSanPham::class);
     }
 }

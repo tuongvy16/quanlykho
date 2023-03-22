@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ChiTietSanPham;
 use App\Models\DonViTinh;
+use App\Models\LoaiSanPham;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 
@@ -10,24 +12,32 @@ class SanPhamController extends Controller
 {
     public function sanPham()
     {
-        $donvitinh = DonViTinh::all();
-        return view('modules.sanpham.danh-sach',compact('donvitinh'));
+        $donViTinh = DonViTinh::all();
+        $loaiSanPham = LoaiSanPham::all();
+        return view('modules.sanpham.danh-sach',compact('donViTinh','loaiSanPham'));
     }
 
     public function danhSach()
     {   
-        $sanpham = SanPham::all();
-        return response()->json($sanpham);
+        $sanPham = SanPham::with('don_vi_tinh')->get();
+        return response()->json($sanPham);
     }
 
     public function themMoi(Request $request)
     {
-        $sanpham = new SanPham();
-        $sanpham->ten = $request->ten;
-        $sanpham->don_vi_tinh_id = $request->don_vi_tinh_id;
-        
-        $sanpham->save();
+        $sanPham = new SanPham();
+        $sanPham->ten = $request->ten;
+        $sanPham->don_vi_tinh_id = $request->don_vi_tinh_id;
 
+        $sanPham->save();
+        
+        foreach($request->loai_san_pham_id_ as $loaiSanPham)
+        {
+            $chiTietSanPham = new ChiTietSanPham();
+            $chiTietSanPham->san_pham_id = $sanPham->id;
+            $chiTietSanPham->loai_san_pham_id = $loaiSanPham;
+            $chiTietSanPham->save();
+        }
         return response()->json([
             'status' => 'success',
             'message' => 'Thêm sản phẩm thành công!',
@@ -37,11 +47,21 @@ class SanPhamController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $sanpham = SanPham::find($id);
-        $sanpham->ten = $request->ten;
-        $sanpham->don_vi_tinh_id = $request->don_vi_tinh_id;
+        $sanPham = SanPham::find($id);
+        $sanPham->ten = $request->ten;
+        $sanPham->don_vi_tinh_id = $request->don_vi_tinh_id;
 
-        $sanpham->update();
+        $sanPham->update();
+
+        $chiTietSanPham = ChiTietSanPham::where('san_pham_id',$request->id)->delete();
+        
+        foreach($request->loai_san_pham_id_ as $loaiSanPham)
+        {
+            $chiTietSanPham = new ChiTietSanPham();
+            $chiTietSanPham->san_pham_id = $sanPham->id;
+            $chiTietSanPham->loai_san_pham_id = $loaiSanPham;
+            $chiTietSanPham->save();
+        }
 
         return response()->json([
             'status' => 'success',
@@ -52,17 +72,17 @@ class SanPhamController extends Controller
 
     public function xoa($id)
     {
-        $sanpham = SanPham::find($id);
+        $sanPham = SanPham::find($id);
 
-        if(empty($sanpham)) {
+        if(empty($sanPham)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy sản phẩm'
             ], 200); 
-
         }
         
-        $sanpham->delete();
+        $sanPham->delete();
+        $chiTietSanPham = ChiTietSanPham::where('san_pham_id',$id)->delete();
 
         return response()->json([
             'status' => 'success',

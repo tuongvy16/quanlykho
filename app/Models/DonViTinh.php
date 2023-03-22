@@ -16,7 +16,7 @@ class DonViTinh extends Model
         'ten',
     ];
 
-    public function sanpham()
+    public function san_pham()
     {
         return $this->HasMany(SanPham::class);
     }

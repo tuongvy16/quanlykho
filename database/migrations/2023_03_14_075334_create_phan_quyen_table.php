@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSanphamLoaisanphamTable extends Migration
+class CreatePhanQuyenTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateSanphamLoaisanphamTable extends Migration
      */
     public function up()
     {
-        Schema::create('sanpham_loaisanpham', function (Blueprint $table) {
+        Schema::create('phan_quyen', function (Blueprint $table) {
             $table->id();
+            $table->string('ten');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateSanphamLoaisanphamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sanpham_loaisanpham');
+        Schema::dropIfExists('phan_quyen');
     }
 }

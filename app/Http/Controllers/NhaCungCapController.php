@@ -14,17 +14,17 @@ class NhaCungCapController extends Controller
 
     public function danhSach()
     {
-        $nhacungcap = NhaCungCap::all();
-        return response()->json($nhacungcap);
+        $nhaCungCap = NhaCungCap::all();
+        return response()->json($nhaCungCap);
     }
     
     public function themMoi(Request $request)
     {
-        $nhacungcap = new NhaCungCap();
-        $nhacungcap->ten = $request->ten;
-        $nhacungcap->dien_thoai = $request->dien_thoai;
+        $nhaCungCap = new NhaCungCap();
+        $nhaCungCap->ten = $request->ten;
+        $nhaCungCap->dien_thoai = $request->dien_thoai;
         
-        $nhacungcap->save();
+        $nhaCungCap->save();
 
         return response()->json([
             'status' => 'success',
@@ -35,11 +35,11 @@ class NhaCungCapController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $nhacungcap = NhaCungCap::find($id);
-        $nhacungcap->ten = $request->ten;
-        $nhacungcap->dien_thoai = $request->dien_thoai;
+        $nhaCungCap = NhaCungCap::find($id);
+        $nhaCungCap->ten = $request->ten;
+        $nhaCungCap->dien_thoai = $request->dien_thoai;
 
-        $nhacungcap->update();
+        $nhaCungCap->update();
 
         return response()->json([
             'status' => 'success',
@@ -50,9 +50,9 @@ class NhaCungCapController extends Controller
 
     public function xoa($id)
     {
-        $nhacungcap = NhaCungCap::find($id);
+        $nhaCungCap = NhaCungCap::find($id);
 
-        if(empty($nhacungcap)) {
+        if(empty($nhaCungCap)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy nhà cung cấp'
@@ -60,7 +60,7 @@ class NhaCungCapController extends Controller
 
         }
         
-        $nhacungcap->delete();
+        $nhaCungCap->delete();
 
         return response()->json([
             'status' => 'success',

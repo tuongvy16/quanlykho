@@ -118,18 +118,26 @@
                 columns:[[
                     {field:'id', title:'Mã sản phẩm', align:'center'},
                     {field:'ten', title:'Tên sản phẩm', align:'right'},
+                    {field:'loai_san_pham.id', title:'Loại sản phẩm', align:'right'},
                     {field:'don_vi_tinh_id', title:'Đơn vị tính', align:'center',formatter: formatDonViTinh},
-                    {field:'so_luong_xuat', title:'Số lượng xuất', align:'center'},
-                    {field:'so_luong_ton', title:'Số lượng tồn', align:'center'},
-                    {field:'tong_so_luong', title:'Tổng số lượng', align:'center'},
+                    {field:'so_luong_xuat', title:'Số lượng xuất', align:'center', formatter: formatSoLuong},
+                    {field:'so_luong_ton', title:'Số lượng tồn', align:'center', formatter: formatSoLuong},
+                    {field:'tong_so_luong', title:'Tổng số lượng', align:'center', formatter: formatSoLuong},
                 ]]
             });
 
-            function formatDonViTinh(val,row){
-                @foreach ($donvitinh as $item)
-                    return `<span>{{ $item->ten }}</span>`
-                @endforeach
+            function formatDonViTinh(val, row){
+                return row.don_vi_tinh.ten;
             }
+
+            function formatSoLuong(val, row){
+                if(val < 1){
+                    return `<span style="color:red">${val}</span>`
+                }
+                else
+                return `<span>${val}</span>`
+            }
+      
         });
     </script>
 

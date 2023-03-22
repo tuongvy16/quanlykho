@@ -14,16 +14,16 @@ class KhachHangController extends Controller
 
     public function danhSach()
     {
-        $khachhang = KhachHang::all();
-        return response()->json($khachhang);
+        $khachHang = KhachHang::all();
+        return response()->json($khachHang);
     }
 
     public function themMoi(Request $request)
     {
-        $khachhang = new KhachHang();
-        $khachhang->ten = $request->ten;
+        $khachHang = new KhachHang();
+        $khachHang->ten = $request->ten;
         
-        $khachhang->save();
+        $khachHang->save();
 
         return response()->json([
             'status' => 'success',
@@ -33,10 +33,10 @@ class KhachHangController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $khachhang = KhachHang::find($id);
-        $khachhang->ten = $request->ten;
+        $khachHang = KhachHang::find($id);
+        $khachHang->ten = $request->ten;
 
-        $khachhang->update();
+        $khachHang->update();
 
         return response()->json([
             'status' => 'success',
@@ -46,9 +46,9 @@ class KhachHangController extends Controller
 
     public function xoa($id)
     {
-        $khachhang = KhachHang::find($id);
+        $khachHang = KhachHang::find($id);
 
-        if(empty($khachhang)) {
+        if(empty($khachHang)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy đơn vị tính'
@@ -56,7 +56,7 @@ class KhachHangController extends Controller
 
         }
         
-        $khachhang->delete();
+        $khachHang->delete();
         
         return response()->json([
             'status' => 'success',

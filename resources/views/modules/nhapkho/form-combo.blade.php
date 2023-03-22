@@ -1,70 +1,82 @@
-<div class="row align-items-start">
+{{-- Kho --}}
+<div class="column" style="width: 25%;padding-top: 70px">
+    <select class="easyui-combobox" name="kho_id" label="Chọn kho:" labelPosition="left" style="width:100%;"
+        data-options="required:true, missingMessage:'Vui lòng chọn kho'">
+        @foreach ($kho as $item)
+            <option value="{{ $item->id }}">{{ $item->ten }}</option>
+        @endforeach                
+    </select>
+</div>
+{{-- Kho --}}
 
-    {{-- Kho --}}
-    <div style="margin-bottom:10px; width:25%;padding-top: 22px" class="col">
-        <select class="easyui-combobox" name="kho_id" label="Chọn kho:" labelPosition="top" style="width:100%;"
-            data-options="required:true, missingMessage:'Vui lòng chọn kho'">
-            @foreach ($kho as $item)
-                <option value="{{ $item->id }}">{{ $item->ten }}</option>
-            @endforeach                
-        </select>
+{{-- Từ nhà cung cấp --}}
+<div class="column" style="width: 35%">
+    <div class="row" style="margin-bottom: 5px">
+        <div style="padding: 10px 0 10px 0">
+            <input class="easyui-radiobutton" name="chon" label="Từ nhà cung cấp">
+        </div>
     </div>
-    {{-- Kho --}}
-
-    {{-- Từ nhà cung cấp --}}
-    <div style="margin-bottom:10px; width: 25%" class="col">
-        <input class="easyui-radiobutton" name="chon" label="Từ nhà cung cấp">
-        
-        {{-- Nhà cung cấp --}}
-        <select class="easyui-combobox" name="nha_cung_cap_id" label="Nhà cung cấp:" labelPosition="top" style="width:100%;"
+    {{-- Nhà cung cấp --}}
+    <div class="row" style="margin-bottom: 10px">
+        <select class="easyui-combobox" name="nha_cung_cap_id" label="Nhà cung cấp:" labelPosition="left" style="width:90%;"
             data-options="required:true, missingMessage:'Vui lòng chọn nhà cung cấp'">
-            @foreach ($nhacungcap as $item)
+            @foreach ($nhaCungCap as $item)
                 <option value="{{ $item->id }}">{{ $item->ten }}</option>
             @endforeach    
         </select>
-        {{-- Nhà cung cấp --}}
+    </div>
+    {{-- Nhà cung cấp --}}
 
-        {{-- Hình thức nhập --}}
-        <select class="easyui-combobox" name="hinh_thuc_id" label="Hình thức nhập:" labelPosition="top" style="width:100%;"
+    {{-- Hình thức nhập --}}
+    <div class="row" style="margin-bottom: 10px">
+        <select class="easyui-combobox" name="hinh_thuc_id" label="Hình thức nhập:" labelPosition="left" style="width:90%;"
             data-options="required:true, missingMessage:'Vui lòng chọn hình thức nhập'">
-            @foreach ($hinhthuc as $item)
+            @foreach ($hinhThuc as $item)
                 <option value="{{ $item->id }}">{{ $item->ten }}</option>
             @endforeach
         </select>
-        {{-- Hình thức nhập --}}
+    </div>
+    {{-- Hình thức nhập --}}
 
-        {{-- Chương trình --}}
-        <select class="easyui-combobox" name="chuong_trinh_id" label="Chương trình:" labelPosition="top" style="width:100%;"
+    {{-- Chương trình --}}
+    <div class="row" style="margin-bottom: 10px">
+        <select class="easyui-combobox" name="chuong_trinh_id" label="Chương trình:" labelPosition="left" style="width:90%;"
             data-options="required:true, missingMessage:'Vui lòng chọn chương trình'">
-            @foreach ($chuongtrinh as $item)
+            @foreach ($chuongTrinh as $item)
                 <option value="{{ $item->id }}">{{ $item->ten }}</option>
             @endforeach        
         </select>
-        {{-- Chương trình --}}
-
     </div>
-    {{-- Từ nhà cung cấp --}}
-
-    {{-- Từ khách hàng --}}
-    <div style="margin-bottom:10px;width: 25%" class="col">
-        <input class="easyui-radiobutton" name="chon" label="Từ khách hàng">
-
-        {{-- Khách hàng --}}
-        <select class="easyui-combobox" name="khach_hang_id" label="Khách hàng:" labelPosition="top" style="width:100%;"
-            data-options="required:true, missingMessage:'Vui lòng chọn khách hàng'">
-            @foreach ($khachhang as $item)
-                <option value="{{ $item->id }}">{{ $item->ten }}</option>
-            @endforeach        
-        </select>
-        {{-- Khách hàng --}}
-
-    </div>
-    {{-- Từ khách hàng --}}
-
-    {{-- Khác --}}
-    <div style="margin-bottom:10px; width: 25%" class="col">
-        <input class="easyui-radiobutton" name="chon" label="Khác">
-    </div>
-    {{-- Khác --}}
+    {{-- Chương trình --}}
 
 </div>
+{{-- Từ nhà cung cấp --}}
+
+{{-- Từ khách hàng --}}
+<div class="column" style="width: 25%">
+    <div class="row" style="margin-bottom: 5px">
+        <div style="padding: 10px 0 10px 0">
+            <input class="easyui-radiobutton" name="chon" label="Từ khách hàng">
+        </div>
+    </div>
+    {{-- Khách hàng --}}
+    <div class="row" style="margin-bottom: 10px" >
+        <select class="easyui-combobox" name="khach_hang_id" label="Khách hàng:" labelPosition="left" style="width:90%;"
+            data-options="required:true, missingMessage:'Vui lòng chọn khách hàng'">
+            @foreach ($khachHang as $item)
+                <option value="{{ $item->id }}">{{ $item->ten }}</option>
+            @endforeach        
+        </select>
+    </div>
+    {{-- Khách hàng --}}
+</div>
+{{-- Từ khách hàng --}}
+
+{{-- Khác --}}
+<div class="column" style="width: 15%">
+    <div class="row" style="margin-bottom: 5px">
+        <div style="padding: 10px 0 10px 0">
+            <input class="easyui-radiobutton" name="chon" label="Khác">
+        </div>
+    </div></div>
+{{-- Khác --}}

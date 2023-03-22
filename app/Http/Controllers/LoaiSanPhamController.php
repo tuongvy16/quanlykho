@@ -15,16 +15,16 @@ class LoaiSanPhamController extends Controller
 
     public function danhSach()
     {
-        $loaisanpham = LoaiSanPham::all();
-        return response()->json($loaisanpham);
+        $loaiSanPham = LoaiSanPham::all();
+        return response()->json($loaiSanPham);
     }
 
     public function themMoi(Request $request)
     {
-        $loaisanpham = new LoaiSanPham();
-        $loaisanpham->ten = $request->ten;
+        $loaiSanPham = new LoaiSanPham();
+        $loaiSanPham->ten = $request->ten;
         
-        $loaisanpham->save();
+        $loaiSanPham->save();
 
         return response()->json([
             'status' => 'success',
@@ -35,10 +35,10 @@ class LoaiSanPhamController extends Controller
 
     public function capNhat(Request $request, $id)
     {
-        $loaisanpham = LoaiSanPham::find($id);
-        $loaisanpham->ten = $request->ten;
+        $loaiSanPham = LoaiSanPham::find($id);
+        $loaiSanPham->ten = $request->ten;
 
-        $loaisanpham->update();
+        $loaiSanPham->update();
 
         return response()->json([
             'status' => 'success',
@@ -49,9 +49,9 @@ class LoaiSanPhamController extends Controller
 
     public function xoa($id)
     {
-        $loaisanpham = LoaiSanPham::find($id);
+        $loaiSanPham = LoaiSanPham::find($id);
 
-        if(empty($loaisanpham)) {
+        if(empty($loaiSanPham)) {
             return response()->json([
                 'status'    => 'error',
                 'message'  => 'Không tìm thấy loại sản phẩm'
@@ -59,7 +59,7 @@ class LoaiSanPhamController extends Controller
 
         }
         
-        $loaisanpham->delete();
+        $loaiSanPham->delete();
         
         return response()->json([
             'status' => 'success',
